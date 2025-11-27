@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoHighLevel Complete Features</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .header .tagline {
+            font-size: 1.2em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .search-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 600px;
+            padding: 15px 25px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            outline: none;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            background: rgba(255,255,255,0.3);
+        }
+
+        .filter-btn.active {
+            background: white;
+            color: #1e3c72;
+            border-color: white;
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+        }
+
+        .category-header {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border-left: 6px solid white;
+        }
+
+        .category-title {
+            color: white;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .category-icon {
+            font-size: 1.2em;
+        }
+
+        .category-count {
+            font-size: 0.6em;
+            background: rgba(255,255,255,0.3);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-left: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #1e3c72, #7e22ce);
+        }
+
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.3em;
+            color: #1e3c72;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .feature-description {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+
+        .feature-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.75em;
+            color: #555;
+            font-weight: 600;
+        }
+
+        .tag.premium {
+            background: #ffd700;
+            color: #333;
+        }
+
+        .tag.ai {
+            background: #e0e7ff;
+            color: #4338ca;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-box {
+                padding: 15px 20px;
+            }
+
+            .stat-number {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 GoHighLevel Complete Features</h1>
+            <p class="tagline">Everything You Can Do to Grow Your Business</p>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-box">
+                <span class="stat-number">70+</span>
+                <span class="stat-label">Features</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">10</span>
+                <span class="stat-label">Categories</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">All-in-One</span>
+                <span class="stat-label">Platform</span>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-box" id="searchInput" placeholder="🔍 Search features... (e.g., email, CRM, automation)">
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All Features</button>
+            <button class="filter-btn" data-filter="crm">CRM & Contacts</button>
+            <button class="filter-btn" data-filter="marketing">Marketing</button>
+            <button class="filter-btn" data-filter="sales">Sales & Funnels</button>
+            <button class="filter-btn" data-filter="automation">Automation</button>
+            <button class="filter-btn" data-filter="communication">Communication</button>
+            <button class="filter-btn" data-filter="websites">Websites & Pages</button>
+            <button class="filter-btn" data-filter="courses">Courses & Memberships</button>
+            <button class="filter-btn" data-filter="ai">AI Tools</button>
+            <button class="filter-btn" data-filter="agency">Agency & White Label</button>
+            <button class="filter-btn" data-filter="analytics">Analytics & Reporting</button>
+        </div>
+
+        <div id="featuresContainer"></div>
+    </div>
+
+    <script>
+        const features = {
+            crm: [
+                {
+                    icon: "👥",
+                    title: "Unlimited Contacts & Smart Lists",
+                    description: "Store unlimited contacts and organize them into dynamic smart lists with tags for targeted campaigns and easy management.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📋",
+                    title: "Custom Pipelines",
+                    description: "Create multiple custom sales pipelines to track leads through different stages and manage opportunities effectively.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📝",
+                    title: "Tasks & Notes",
+                    description: "Add tasks, reminders, and detailed notes to contacts for complete relationship tracking and follow-up management.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "⭐",
+                    title: "Lead Scoring",
+                    description: "Automatically score leads based on engagement and behavior to prioritize high-value prospects.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🔢",
+                    title: "Custom Fields & Values",
+                    description: "Create custom data fields and structures to tailor your CRM to your specific business needs.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📱",
+                    title: "Mobile CRM App",
+                    description: "Access your contacts, leads, and customer data on the go with full-featured mobile applications.",
+                    tags: ["Core"]
+                }
+            ],
+            marketing: [
+                {
+                    icon: "✉️",
+                    title: "Email Marketing & Campaigns",
+                    description: "Create and send personalized email campaigns with drag-and-drop editor and pre-built templates.",
+                    tags: ["Core", "Pay Per Use"]
+                },
+                {
+                    icon: "💬",
+                    title: "SMS Marketing & Two-Way Texting",
+                    description: "Send bulk SMS campaigns or have two-way text conversations with leads and customers.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📱",
+                    title: "Social Media Scheduler",
+                    description: "Schedule and manage posts across multiple social media platforms from one dashboard.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📧",
+                    title: "Email Templates Library",
+                    description: "Save and reuse email templates for faster communication and consistent branding.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🎯",
+                    title: "Multi-Channel Campaigns",
+                    description: "Create campaigns that reach customers via email, SMS, voicemail, and social media simultaneously.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📞",
+                    title: "Call Tracking & Analytics",
+                    description: "Assign tracking numbers to campaigns to attribute leads and measure which ads drive calls.",
+                    tags: ["Core"]
+                }
+            ],
+            sales: [
+                {
+                    icon: "🎨",
+                    title: "Funnel Builder",
+                    description: "Build professional multi-step sales funnels with templates for lead generation, webinars, and product sales.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🛒",
+                    title: "E-commerce & Products",
+                    description: "Sell physical and digital products with integrated checkout pages and payment processing.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "💳",
+                    title: "Stripe Payment Integration",
+                    description: "Accept payments directly through Stripe for appointments, products, and services.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📄",
+                    title: "Invoicing & Estimates",
+                    description: "Create and send professional invoices and estimates with payment tracking.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "💸",
+                    title: "Text2Pay",
+                    description: "Send payment requests via SMS that customers can pay with one click.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🎟️",
+                    title: "Order Forms & Upsells",
+                    description: "Build one or two-step checkout forms with upsells and order bumps to maximize revenue.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📊",
+                    title: "Proposals & Contracts",
+                    description: "Create, send, and track proposals with e-signature capabilities.",
+                    tags: ["Core"]
+                }
+            ],
+            automation: [
+                {
+                    icon: "⚙️",
+                    title: "Visual Workflow Builder",
+                    description: "Create complex automation workflows with drag-and-drop interface for any business process.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🤖",
+                    title: "Multi-Channel Automation",
+                    description: "Automate follow-ups across email, SMS, voicemail, and tasks based on triggers and conditions.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🔔",
+                    title: "Trigger-Based Actions",
+                    description: "Set up automations triggered by form submissions, booking, emails, tags, and custom events.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📅",
+                    title: "Smart Appointment Booking",
+                    description: "Automatically book appointments through AI-powered conversations without human intervention.",
+                    tags: ["AI"]
+                },
+                {
+                    icon: "🔗",
+                    title: "Zapier & Webhook Integration",
+                    description: "Connect to 5000+ apps through Zapier or custom webhooks for unlimited integration possibilities.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📬",
+                    title: "Automated Review Requests",
+                    description: "Automatically request and collect customer reviews after appointments or purchases.",
+                    tags: ["Core"]
+                }
+            ],
+            communication: [
+                {
+                    icon: "💬",
+                    title: "Unified Inbox",
+                    description: "Manage all conversations from email, SMS, Facebook, Instagram, WhatsApp, and more in one place.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📞",
+                    title: "Built-in Phone System",
+                    description: "Make and receive calls directly within the platform with call recording and voicemail.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "💻",
+                    title: "Live Chat Widget",
+                    description: "Add live chat to any website with SMS handoff so conversations continue via text message.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📲",
+                    title: "WhatsApp Integration",
+                    description: "Send and receive WhatsApp messages directly from your GoHighLevel account.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📱",
+                    title: "Facebook Messenger & Instagram DM",
+                    description: "Manage social media conversations and respond to messages from one unified inbox.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🎙️",
+                    title: "Voicemail Drops",
+                    description: "Send pre-recorded voicemails to contacts automatically as part of campaigns.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🤖",
+                    title: "AI Chat Assistant",
+                    description: "Use AI to automatically respond to common questions and qualify leads via chat.",
+                    tags: ["AI"]
+                }
+            ],
+            websites: [
+                {
+                    icon: "🌐",
+                    title: "Website Builder",
+                    description: "Create unlimited professional websites with drag-and-drop editor and customizable templates.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📄",
+                    title: "Landing Page Builder",
+                    description: "Build high-converting landing pages optimized for lead capture and conversions.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📝",
+                    title: "Blog Platform",
+                    description: "Create and manage blog content with SEO optimization and content management tools.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📋",
+                    title: "Form & Survey Builder",
+                    description: "Create unlimited custom forms and surveys with conditional logic and auto-responses.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🎯",
+                    title: "Pop-ups & Embeds",
+                    description: "Add forms, surveys, and chat widgets as pop-ups or embeds on any website.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🎨",
+                    title: "Custom Domains",
+                    description: "Use your own custom domains for websites, funnels, and branded links.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📱",
+                    title: "Mobile Responsive Design",
+                    description: "All websites and pages automatically adapt to mobile, tablet, and desktop screens.",
+                    tags: ["Core"]
+                }
+            ],
+            courses: [
+                {
+                    icon: "🎓",
+                    title: "Course Builder",
+                    description: "Create unlimited online courses with video hosting, quizzes, and certificates of completion.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🔐",
+                    title: "Membership Sites",
+                    description: "Build membership communities with tiered access, content dripping, and exclusive areas.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "👥",
+                    title: "Community Platform",
+                    description: "Create engaged communities with posts, discussions, direct messaging, and member interaction.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📊",
+                    title: "Quizzes & Assessments",
+                    description: "Add interactive quizzes and assessments to courses with automatic grading and progress tracking.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🎥",
+                    title: "Unlimited Video Hosting",
+                    description: "Host unlimited course videos directly in the platform with streaming and playback controls.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🏆",
+                    title: "Certificates & Gamification",
+                    description: "Award completion certificates and use gamification to increase engagement.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📱",
+                    title: "Branded Course Mobile App",
+                    description: "Offer your courses through custom-branded mobile apps for iOS and Android.",
+                    tags: ["Premium"]
+                }
+            ],
+            ai: [
+                {
+                    icon: "🤖",
+                    title: "AI Content Generator",
+                    description: "Generate marketing copy, emails, social posts, and website content using AI assistance.",
+                    tags: ["AI"]
+                },
+                {
+                    icon: "💬",
+                    title: "AI Conversation Bot",
+                    description: "Automate customer conversations with AI that learns from your business and responds naturally.",
+                    tags: ["AI"]
+                },
+                {
+                    icon: "📞",
+                    title: "AI Voice Assistant",
+                    description: "AI-powered voice assistants can make and receive phone calls to book appointments and qualify leads.",
+                    tags: ["AI", "Premium"]
+                },
+                {
+                    icon: "⭐",
+                    title: "AI Review Responder",
+                    description: "Automatically generate and post responses to customer reviews with AI-powered replies.",
+                    tags: ["AI"]
+                },
+                {
+                    icon: "🖼️",
+                    title: "AI Image Generator",
+                    description: "Create marketing images and graphics using AI image generation tools.",
+                    tags: ["AI"]
+                },
+                {
+                    icon: "📧",
+                    title: "AI Email Optimization",
+                    description: "Optimize email subject lines, content, and send times using AI recommendations.",
+                    tags: ["AI"]
+                }
+            ],
+            agency: [
+                {
+                    icon: "🏷️",
+                    title: "White Label Platform",
+                    description: "Rebrand the entire platform with your logo, colors, and domain to resell as your own software.",
+                    tags: ["Premium"]
+                },
+                {
+                    icon: "👤",
+                    title: "Unlimited Sub-Accounts",
+                    description: "Create unlimited client accounts with separate data, users, and configurations.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "💰",
+                    title: "Client Billing & Rebilling",
+                    description: "Charge clients for platform access and markup communication services like SMS and calls.",
+                    tags: ["Premium"]
+                },
+                {
+                    icon: "📱",
+                    title: "Custom Branded Mobile App",
+                    description: "Launch your own branded mobile app in iOS and Android app stores for clients.",
+                    tags: ["Premium"]
+                },
+                {
+                    icon: "🖥️",
+                    title: "Branded Desktop App",
+                    description: "Offer a fully branded desktop application for Mac and Windows to clients.",
+                    tags: ["Premium"]
+                },
+                {
+                    icon: "⚙️",
+                    title: "Snapshots & Templates",
+                    description: "Save and deploy complete account setups, funnels, and workflows as templates for clients.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "👥",
+                    title: "Agency Pro Tools",
+                    description: "Manage multiple clients with agency dashboard, client provisioning, and team management.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🔧",
+                    title: "Custom Integrations",
+                    description: "Build custom integrations and features for your white-labeled platform.",
+                    tags: ["Premium"]
+                }
+            ],
+            calendar: [
+                {
+                    icon: "📅",
+                    title: "Calendar Booking System",
+                    description: "Unlimited calendar types including simple, round-robin, class, and service menus.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "👥",
+                    title: "Team Scheduling & Round Robin",
+                    description: "Distribute bookings among team members automatically based on availability and priority.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "💳",
+                    title: "Paid Appointments",
+                    description: "Require upfront payment for appointments to reduce no-shows and secure bookings.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🔗",
+                    title: "Google & Outlook Sync",
+                    description: "Two-way sync with Google Calendar and Outlook to prevent double bookings.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🔔",
+                    title: "Appointment Reminders",
+                    description: "Automatic SMS and email reminders before appointments to reduce no-shows.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🎯",
+                    title: "Service Menu Booking",
+                    description: "Create synchronized booking systems for multiple services to prevent overbooking.",
+                    tags: ["Core"]
+                }
+            ],
+            analytics: [
+                {
+                    icon: "📊",
+                    title: "Detailed Analytics Dashboard",
+                    description: "Track website traffic, conversions, leads, pipeline value, and campaign performance.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📈",
+                    title: "Revenue & Sales Reports",
+                    description: "Monitor revenue by pipeline stage, conversion rates, and ROI across all campaigns.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "👁️",
+                    title: "Attribution Tracking",
+                    description: "See which marketing channels and campaigns generate the most leads and revenue.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📞",
+                    title: "Call Analytics",
+                    description: "Track call volume, duration, recordings, and attribution by campaign.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "✉️",
+                    title: "Email & SMS Metrics",
+                    description: "Monitor open rates, click rates, deliverability, and engagement for all communications.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🎯",
+                    title: "Conversion Tracking",
+                    description: "Track form submissions, bookings, purchases, and custom conversion goals.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📱",
+                    title: "Agent Performance Reports",
+                    description: "Track individual team member performance including calls, messages, and sales activities.",
+                    tags: ["Core"]
+                }
+            ],
+            reputation: [
+                {
+                    icon: "⭐",
+                    title: "Review Management",
+                    description: "Request, collect, monitor, and respond to reviews from Google, Facebook, and more.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "📍",
+                    title: "Local Listings Management",
+                    description: "Manage and distribute business listings across multiple directories powered by Yext.",
+                    tags: ["Core"]
+                },
+                {
+                    icon: "🤖",
+                    title: "AI Review Generation",
+                    description: "Use AI to automatically respond to reviews with personalized, brand-appropriate replies.",
+                    tags: ["AI"]
+                },
+                {
+                    icon: "📊",
+                    title: "Reputation Dashboard",
+                    description: "Monitor your online reputation score and track review trends over time.",
+                    tags: ["Core"]
+                }
+            ]
+        };
+
+        const container = document.getElementById('featuresContainer');
+        const searchInput = document.getElementById('searchInput');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        let currentFilter = 'all';
+        let searchTerm = '';
+
+        function renderFeatures() {
+            container.innerHTML = '';
+            
+            const categoriesToShow = currentFilter === 'all' 
+                ? Object.keys(features) 
+                : [currentFilter];
+
+            categoriesToShow.forEach(category => {
+                const categoryFeatures = features[category].filter(feature => {
+                    if (searchTerm === '') return true;
+                    const searchLower = searchTerm.toLowerCase();
+                    return feature.title.toLowerCase().includes(searchLower) ||
+                           feature.description.toLowerCase().includes(searchLower) ||
+                           feature.tags.some(tag => tag.toLowerCase().includes(searchLower));
+                });
+
+                if (categoryFeatures.length === 0) return;
+
+                const section = document.createElement('div');
+                section.className = 'category-section';
+
+                const categoryNames = {
+                    crm: { name: 'CRM & Contact Management', icon: '👥' },
+                    marketing: { name: 'Marketing & Campaigns', icon: '📢' },
+                    sales: { name: 'Sales & Funnels', icon: '💰' },
+                    automation: { name: 'Automation & Workflows', icon: '⚙️' },
+                    communication: { name: 'Communication Channels', icon: '💬' },
+                    websites: { name: 'Websites & Landing Pages', icon: '🌐' },
+                    courses: { name: 'Courses & Memberships', icon: '🎓' },
+                    ai: { name: 'AI-Powered Tools', icon: '🤖' },
+                    agency: { name: 'Agency & White Label', icon: '🏢' },
+                    calendar: { name: 'Calendar & Scheduling', icon: '📅' },
+                    analytics: { name: 'Analytics & Reporting', icon: '📊' },
+                    reputation: { name: 'Reputation Management', icon: '⭐' }
+                };
+
+                const catInfo = categoryNames[category];
+
+                section.innerHTML = `
+                    <div class="category-header">
+                        <div class="category-title">
+                            <span class="category-icon">${catInfo.icon}</span>
+                            ${catInfo.name}
+                            <span class="category-count">${categoryFeatures.length} features</span>
+                        </div>
+                    </div>
+                    <div class="features-grid" id="grid-${category}"></div>
+                `;
+
+                container.appendChild(section);
+
+                const grid = document.getElementById(`grid-${category}`);
+                categoryFeatures.forEach(feature => {
+                    const card = document.createElement('div');
+                    card.className = 'feature-card';
+                    
+                    const tagsHTML = feature.tags.map(tag => {
+                        let tagClass = '';
+                        if (tag === 'Premium') tagClass = 'premium';
+                        if (tag === 'AI') tagClass = 'ai';
+                        return `<span class="tag ${tagClass}">${tag}</span>`;
+                    }).join('');
+
+                    card.innerHTML = `
+                        <div class="feature-icon">${feature.icon}</div>
+                        <div class="feature-title">${feature.title}</div>
+                        <div class="feature-description">${feature.description}</div>
+                        <div class="feature-tags">${tagsHTML}</div>
+                    `;
+                    grid.appendChild(card);
+                });
+            });
+
+            if (container.innerHTML === '') {
+                container.innerHTML = `
+                    <div style="text-align: center; color: white; padding: 50px; font-size: 1.5em;">
+                        No features found matching "${searchTerm}"
+                    </div>
+                `;
+            }
+        }
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderFeatures();
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            searchTerm = e.target.value;
+            renderFeatures();
+        });
+
+        renderFeatures();
+    </script>
+</body>
+</html>
